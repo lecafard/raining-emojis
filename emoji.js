@@ -1,8 +1,8 @@
 (function() {
-    var addInterval = 36;
-    var active = [];
-    var canvas = document.getElementById('canvas');
-    var ctx = canvas.getContext('2d');
+    const addInterval = 36;
+    const active = [];
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
 
     function Emoji(type) {
         this.x = Math.floor(Math.random() * window.innerWidth) - 30;
@@ -13,7 +13,7 @@
         this.height = 0;
 
         this.fall = function() {
-            var velocity = this.acceleration * this.currentTick;
+            const velocity = this.acceleration * this.currentTick;
             this.y = velocity * velocity;
             ctx.fillText(this.emoji, this.x, this.y);
             this.currentTick++;
