@@ -1,8 +1,8 @@
 (function() {
-    var addInterval = 36;
-    var active = [];
-    var canvas = document.getElementById('canvas');
-    var ctx = canvas.getContext('2d');
+    const addInterval = 36;
+    const active = [];
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
 
     function Emoji(type) {
         this.x = Math.floor(Math.random() * window.innerWidth) - 30;
@@ -13,12 +13,11 @@
         this.height = 0;
 
         this.fall = function() {
-            var velocity = this.acceleration * this.currentTick;
+            const velocity = this.acceleration * this.currentTick;
             this.y = velocity * velocity;
             ctx.fillText(this.emoji, this.x, this.y);
             this.currentTick++;
-            if (this.y > canvas.height) return false;
-            return true;
+            return this.y <= canvas.height;
         }
 
     }
@@ -29,7 +28,7 @@
         canvas.height = window.innerHeight;
         ctx.font = '80px Arial';
         ctx.fillStyle = 'white';
-        active = active.filter(function(e) { return e.fall();});
+        active = active.filter(e => e.fall());
     }
 
     function bg() {
@@ -41,10 +40,10 @@
     }
 
     function add() {
-        // pick a random range
         active.push(new Emoji(ALL_EMOJIS[Math.floor(Math.random() * ALL_EMOJIS.length)]));
         setTimeout(add, addInterval);
     }
+    
     add();
     setInterval(run, 18);
     setInterval(bg, 180);
