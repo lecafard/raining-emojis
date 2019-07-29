@@ -46,5 +46,5 @@
     
     add();
     setInterval(run, 18);
-    setInterval(bg, 180);
+    bg();
 })();
